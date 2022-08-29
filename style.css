@@ -17,19 +17,98 @@ html, body{
 
 .content-wrapper{
     background-image: url(./library-upscaled.jpg);
-    min-width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
     background-size: cover;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 3fr .8fr;
+    grid-template-rows: .5fr 4fr;
 }
 
-.container{
+button{
+    font-size: 1rem;
+    flex-shrink: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-bottom-right-radius: 25px;
+    width: 100px;
+    height: 75px;
+    background-color: brown;
+    border: none;
+}
+
+.header{
+    grid-area: 1 / 1 / 2 / 3;
+    height: 100%;
+    width: 100%;
+    background: rgb(34,43,22);
+    background: linear-gradient(124deg, rgba(34, 43, 22, 0.7) 0%, rgba(167,70,70,0.7) 35%, rgba(5, 69, 166, 0.712) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.information{
+    grid-area: 2 / 2 / 3 / 3;
+    height: 100%;
+    width: 100%;
+    background: rgb(34,43,22);
+    background: linear-gradient(37deg, rgba(34, 43, 22, 0.7) 0%, rgba(167,70,70,0.7) 35%, rgba(5, 69, 166, 0.712) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-content{
+    grid-area: 2 / 1 / 3 / 2;
+    background: rgba(34, 43, 22, 0.534);
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.card{
+    width: 90%;
+    height: 90%;
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(63,73,251);
+    background: radial-gradient(circle, rgba(63, 72, 251, 0.767) 0%, rgba(252, 70, 243, 0.24) 100%);
+    justify-self: center;
+    align-self: center;
+    border-radius: 25px;
+    position: relative;
+}
+
+.author, .title, .pages, .read{
+    font-size: 2rem;
+    padding: .5rem;
+}
+
+.author, .title{
+    display: grid;
+    border: 1px solid red;
+    width: 95%;
+    grid-template-columns: .7fr 1fr;
     justify-self: center;
     align-self: center;
 }
 
-button{
-    padding: 25px;
-    font-size: 1rem;
+.title>span:first-child{
+    justify-self: right;
+    padding-right: .5rem;
 }
+
+.author>span:first-child{
+    justify-self: right;
+    padding-right: .5rem;
+}
+
+
