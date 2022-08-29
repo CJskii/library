@@ -7,4 +7,29 @@ html, body{
     max-height: 100vh;
     width: 100%;
     overflow-x: hidden;
+    margin: 0;
+    padding: 0
+}
+
+.hidden{
+    display: none;
+}
+
+.content-wrapper{
+    background-image: url(./library-upscaled.jpg);
+    min-width: 100vw;
+    min-height: 100vh;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.container{
+    justify-self: center;
+    align-self: center;
+}
+
+button{
+    padding: 25px;
+    font-size: 1rem;
 }
