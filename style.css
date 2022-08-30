@@ -25,7 +25,7 @@ html, body{
     grid-template-rows: .5fr 4fr;
 }
 
-button{
+.remove{
     font-size: 1rem;
     flex-shrink: 1;
     position: absolute;
@@ -88,27 +88,23 @@ button{
 }
 
 .author, .title, .pages, .read{
-    font-size: 2rem;
+    font-size: 1.3rem;
     padding: .5rem;
 }
 
-.author, .title{
+.author, .title, .pages, .read{
     display: grid;
-    border: 1px solid red;
     width: 95%;
-    grid-template-columns: .7fr 1fr;
+    grid-template-columns: .4fr 1fr;
     justify-self: center;
     align-self: center;
+    color: rgb(204, 194, 194);
 }
 
-.title>span:first-child{
+.title>span:first-child, .author>span:first-child, .pages>span:first-child, .read>span:first-child{
     justify-self: right;
     padding-right: .5rem;
-}
-
-.author>span:first-child{
-    justify-self: right;
-    padding-right: .5rem;
+    color: rgb(156, 151, 151);
 }
 
 
