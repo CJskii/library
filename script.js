@@ -1,16 +1,54 @@
 let myLibrary = [];
 
-let newBook = document.querySelector('.new-book') 
+const newBook = document.querySelector('.new-book')
+const mainWrapper = document.querySelector('.main-content')
+newBook.addEventListener('click', userPrompt);
 
-function Book(author, title, pages, read) {
-  this.author = author
+function Book(title, author, pages, read) {
   this.title = title
+  this.author = author
   this.pages = pages
   this.read = read
 }
 
+
+const book1 = new Book("Jozef z Bazin", "Wariat na rowerze", "555", "yes")
+const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no")
+
+
+
+function userPrompt(){
+    setAtribute()
+}
+
+function setAtribute(){
+    let form = document.createElement('form')
+    let title = document.createElement('div')
+    title.setAttribute('class', 'title')
+    let author = document.createElement('div')
+    author.setAttribute('class', 'author')
+    let pages = document.createElement('div')
+    pages.setAttribute('class', 'pages')
+    let read = document.createElement('div')
+    read.setAttribute('class', 'read')
+    appendElements()
+}
+
+function appendElements(){
+
+}
+
+function removeAttribute(){
+  
+}
+
+
 function addBookToLibrary() {
   // do stuff here
+  // click button --> create form prompt
+  // user enter -- > title, author, pages, read
+  // on submit -- addBookToLibrary
+  // remove prompt
 }
 
 /*
