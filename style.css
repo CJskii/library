@@ -426,6 +426,11 @@ button[class=OFF]{
     color: rgb(201, 162, 184);
 }
 
+.newBookText{
+    justify-self: center;
+    align-self: center;
+}
+
 input{
     background-color: transparent;
     color: white;

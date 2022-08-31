@@ -11,6 +11,7 @@ let titleSpan = document.createElement('span')
 let titleInput = document.createElement('input')
 let author = document.createElement('div')
 let authorInput = document.createElement('input')
+let pages = document.createElement('div')
 let pagesInput = document.createElement('input')
 let toggle = document.createElement('div')
 let toggleBtn = document.createElement('button')
@@ -32,18 +33,30 @@ function Book(title, author, pages, read) {
 const book1 = new Book("Jozef z Bazin", "Wariat na rowerze", "555", "yes")
 const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no")
 
+function addAttrubutes(x, y, z){
+  let element = x
+  if (y == 'class'){
+    element.classList = z
+  } else if(y == 'text'){
+    element.textContent = z
+  } else if (y == 'placeholder'){
+    element.placeholder = z
+  } else if (y == 'type'){
+    element.type = z
+  }
+}
 
+function appendElements(element, parent){
+  parent.appendChild(element)
+}
 
+function hideInputCard(){
+  card.remove()
+}
 
-/*
-let bookInfo = document.createElement('div')
-let pageSpan = document.createElement('span')
-let confirmWrap = document.createElement('div')
-let confirmBtn = document.createElement('button')
-let cancelBtn = document.createElement('button')
-let readSpan = document.createElement('span')
-*/
-
+function removeAttribute(element){
+  
+}
 
 
 function userPrompt(){ // prompts user with form
@@ -56,108 +69,61 @@ function userPrompt(){ // prompts user with form
   createSubmit()
 }
 
-function hideInputCard(){
-  card.remove()
-}
-
 function createCard(){
-  const hasClass = card.classList.contains('hidden')
-  if (hasClass == false){
-    card.setAttribute('class', 'card-dynamic')
-    mainWrapper.appendChild(card)
-  } else if(hasClass == true){
-    card.classList.remove("hidden")
-    mainWrapper.appendChild(card)
-  }
+  //const hasClass = card.classList.contains('hidden')
+  addAttrubutes(card, 'class', 'card-dynamic')
+  appendElements(card, mainWrapper)
 }
-
 
 function createCardHeader(){
   addAttrubutes(header, 'class', 'modify-buttons-dynamic')
   addAttrubutes(header, 'class', 'newBookText')
   addAttrubutes(headerText, "text", "Add new book")
-  addChild(header, card)
-  addChild(headerText, header)
-}
-
-function addAttrubutes(x, y, z){
-  let element = x
-  if (y == 'class'){
-    element.classList = z
-  } else if(y == 'text'){
-    element.textContent = z
-  }
-}
-
-function addChild(element, parent){
-  parent.appendChild(element)
+  appendElements(header, card)
+  appendElements(headerText, header)
 }
 
 function createTitle(){
-  title.setAttribute('class', 'title-dynamic')
-  titleInput.setAttribute('placeholder', 'Enter book title...')
-  title.appendChild(titleSpan)
-  title.appendChild(titleInput)
-  card.appendChild(title)
+  addAttrubutes(title, "class", "title-dynamic")
+  addAttrubutes(titleInput, 'placeholder', 'Enter book title...')
+  appendElements(titleSpan, title)
+  appendElements(titleInput, title)
+  appendElements(title, card)
 }
 
 function createAuthor(){
-  author.setAttribute('class', 'author-dynamic')
-  authorInput.setAttribute('type' , 'author-dynamic')
-  authorInput.setAttribute('placeholder', 'Enter book author...')
-  author.appendChild(authorInput)
-  card.appendChild(author)
+  addAttrubutes(author, "class", "author-dynamic")
+  addAttrubutes(authorInput, "type", 'author-dynamic')
+  addAttrubutes(authorInput, "placeholder", "Enter book author...")
+  appendElements(authorInput, author)
+  appendElements(author, card)
 }
 
 function createPages(){
-  let pages = document.createElement('div')
-  pages.setAttribute('class', 'pages-dynamic')
-  pagesInput.setAttribute('type', 'pages')
-  pagesInput.setAttribute('placeholder', 'Enter book pages...')
-  pages.appendChild(pagesInput)
-  card.appendChild(pages)
+  addAttrubutes(pages, 'class', 'pages-dynamic')
+  addAttrubutes(pagesInput, 'type', 'pages')
+  addAttrubutes(pagesInput, 'placeholder', 'Enter book pages...' )
+  appendElements(pagesInput, pages)
+  appendElements(pages, card)
 }
 
 function createReadToggle(){
-  toggle.setAttribute('class', 'toggle-dynamic')
-  toggleBtn.setAttribute('class', 'OFF')
-  toggleBtn.textContent = "NOT READ"
-  toggle.appendChild(toggleBtn)
-  card.appendChild(toggle)
+  addAttrubutes(toggle, 'class', 'toggle-dynamic')
+  addAttrubutes(toggleBtn, 'class', 'OFF')
+  addAttrubutes(toggleBtn, 'text', 'NOT READ')
+  appendElements(toggleBtn, toggle)
+  appendElements(toggle, card)
 }
 
 function createSubmit(){
-  submit.setAttribute('class', 'submit-dynamic')
-  submitBtn.setAttribute('class', 'submitbtn')
-  submitBtn.textContent = "ADD"
-  nosubmitBtn.setAttribute('class', 'nosubmitbtn')
-  nosubmitBtn.textContent = "CANCEL"
-  submit.appendChild(submitBtn)
-  submit.appendChild(nosubmitBtn)
-  card.appendChild(submit)
-}
-
-function createBookInfo(){
-  bookInfo.setAttribute('class', 'book-info-dynamic')
-  card.appendChild(bookInfo);
-  // page
-  pageSpan.textContent = "666"
-  bookInfo.appendChild(pageSpan)
-  //button wrap
-  confirmWrap.setAttribute('class', 'confirm-wrap-dynamic')
-  bookInfo.appendChild(confirmWrap)
-  // confirm btn
-  confirmBtn.setAttribute('class', 'confirm-dynamic')
-  confirmBtn.textContent = '✓'
-  confirmWrap.appendChild(confirmBtn)
-  // cancel btn
-  cancelBtn.setAttribute('class', 'cancel-dynamic')
-  cancelBtn.textContent = 'X'
-  confirmWrap.appendChild(cancelBtn)
-  // read 
-  readSpan.textContent = "Yes"
-  bookInfo.appendChild(readSpan)
-  console.log(card)
+  addAttrubutes(submit, 'class', 'submit-dynamic')
+  addAttrubutes(submitBtn, 'class', 'submitbtn')
+  addAttrubutes(submitBtn, 'text', "ADD")
+  addAttrubutes(nosubmitBtn, 'class', 'nosubmitbtn')
+  addAttrubutes(nosubmitBtn, 'text', "CANCEL")
+  appendElements(submitBtn, submit)
+  appendElements(nosubmitBtn, submit)
+  appendElements(submit, card)
 }
 
 function buttonToggler(e){
@@ -173,34 +139,7 @@ function buttonToggler(e){
   }
 }
 
-function setAtribute(){
 
-
-  // to card
-
-
-
-  //title
-
-
-  //author
-
-
-  // book-info
-
-
-}
-
-function appendElements(){
-  
-  
-  
-  
-}
-
-function removeAttribute(){
-  
-}
 
 
 function addBookToLibrary() {
