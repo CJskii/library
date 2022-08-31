@@ -2,7 +2,20 @@ let myLibrary = [];
 
 const newBook = document.querySelector('.new-book')
 const mainWrapper = document.querySelector('.main-content')
+const contentWrapper = document.querySelector('.content-wrapper')
+let card = document.createElement('div')
+let header = document.createElement('div')
+let headerText = document.createElement('button')
+let title = document.createElement('div')
+let titleSpan = document.createElement('span')
+let titleInput = document.createElement('input')
+let author = document.createElement('div')
+let authorInput = document.createElement('input')
+let pagesInput = document.createElement('input')
+let toggle = document.createElement('div')
+let toggleBtn = document.createElement('button')
 newBook.addEventListener('click', userPrompt);
+toggleBtn.addEventListener('click', buttonToggler);
 
 function Book(title, author, pages, read) {
   this.title = title
@@ -17,68 +30,138 @@ const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no")
 
 
 
+
+/*
+let bookInfo = document.createElement('div')
+let pageSpan = document.createElement('span')
+let confirmWrap = document.createElement('div')
+let confirmBtn = document.createElement('button')
+let cancelBtn = document.createElement('button')
+let readSpan = document.createElement('span')
+*/
 function userPrompt(){ // prompts user with form
-    setAtribute()
+  createCard()
+  createCardHeader()
+  createTitle()
+  createAuthor()
+  createPages()
+  createReadToggle()
+  createSubmit()
 }
 
-function setAtribute(){
-  let card = document.createElement('div')
-  card.setAttribute('class', 'card')
+function createCard(){
+  card.setAttribute('class', 'card-dynamic')
   mainWrapper.appendChild(card)
-  // to card
-  let header = document.createElement('div')
-  header.setAttribute('class', 'modify-buttons')
-  let headerText = document.createElement('button')
+}
+
+function createCardHeader(){
+  header.setAttribute('class', 'modify-buttons-dynamic')
   headerText.setAttribute("class", 'edit' )
   headerText.setAttribute("type", 'text' )
-  headerText.textContent = "Enter below"
+  headerText.textContent = "Add new book"
   card.appendChild(header)
   header.appendChild(headerText)
+}
 
-  //title
-  let title = document.createElement('div')
-  title.setAttribute('class', 'title')
-  let titleSpan = document.createElement('span')
-  titleSpan.textContent = "Book:"
-  let titleInput = document.createElement('input')
-  titleInput.setAttribute('type', 'text')
+function createTitle(){
+  title.setAttribute('class', 'title-dynamic')
+  titleInput.setAttribute('placeholder', 'Title...')
   title.appendChild(titleSpan)
   title.appendChild(titleInput)
   card.appendChild(title)
-  //author
-  let author = document.createElement('div')
-  author.setAttribute('class', 'author')
-  let authorInput = document.createElement('input')
-  authorInput.setAttribute('type' , 'author')
+}
+
+function createAuthor(){
+  author.setAttribute('class', 'author-dynamic')
+  authorInput.setAttribute('type' , 'author-dynamic')
+  authorInput.setAttribute('placeholder', 'Author...')
   author.appendChild(authorInput)
   card.appendChild(author)
-  // book-info
-  let bookInfo = document.createElement('div')
-  bookInfo.setAttribute('class', 'book-info')
+}
+
+function createPages(){
+  let pages = document.createElement('div')
+  pages.setAttribute('class', 'pages-dynamic')
+  pagesInput.setAttribute('type', 'pages')
+  pagesInput.setAttribute('placeholder', 'Pages...')
+  pages.appendChild(pagesInput)
+  card.appendChild(pages)
+}
+
+function createReadToggle(){
+  toggle.setAttribute('class', 'toggle-dynamic')
+  toggleBtn.setAttribute('class', 'OFF')
+  toggleBtn.textContent = "NOT READ"
+  toggle.appendChild(toggleBtn)
+  card.appendChild(toggle)
+}
+
+function createSubmit(){
+  let submit = document.createElement('div')
+  submit.setAttribute('class', 'submit-dynamic')
+  let submitBtn = document.createElement('button')
+  submitBtn.setAttribute('class', 'submitbtn')
+  submitBtn.textContent = "ADD"
+  let nosubmitBtn = document.createElement('button')
+  nosubmitBtn.setAttribute('class', 'nosubmitbtn')
+  nosubmitBtn.textContent = "CANCEL"
+  submit.appendChild(submitBtn)
+  submit.appendChild(nosubmitBtn)
+  card.appendChild(submit)
+}
+
+function createBookInfo(){
+  bookInfo.setAttribute('class', 'book-info-dynamic')
   card.appendChild(bookInfo);
   // page
-  let pageSpan = document.createElement('span')
   pageSpan.textContent = "666"
   bookInfo.appendChild(pageSpan)
   //button wrap
-  let confirmWrap = document.createElement('div')
-  confirmWrap.setAttribute('class', 'confirm-wrap')
+  confirmWrap.setAttribute('class', 'confirm-wrap-dynamic')
   bookInfo.appendChild(confirmWrap)
   // confirm btn
-  let confirmBtn = document.createElement('button')
-  confirmBtn.setAttribute('class', 'confirm')
+  confirmBtn.setAttribute('class', 'confirm-dynamic')
   confirmBtn.textContent = '✓'
   confirmWrap.appendChild(confirmBtn)
   // cancel btn
-  let cancelBtn = document.createElement('button')
-  cancelBtn.setAttribute('class', 'cancel')
+  cancelBtn.setAttribute('class', 'cancel-dynamic')
   cancelBtn.textContent = 'X'
   confirmWrap.appendChild(cancelBtn)
   // read 
-  let readSpan = document.createElement('span')
   readSpan.textContent = "Yes"
   bookInfo.appendChild(readSpan)
   console.log(card)
+}
+
+function buttonToggler(e){
+  const hasClass = e.target.classList.contains('OFF')
+  console.log(hasClass)
+  if (hasClass == true){
+    console.log(toggleBtn.classList.value)
+    toggleBtn.classList.value = "ON"
+    toggleBtn.textContent = "READ"
+  } else if(hasClass == false){
+    toggleBtn.classList.value = "OFF"
+    toggleBtn.textContent = "NOT READ"
+  }
+}
+
+function setAtribute(){
+
+
+  // to card
+
+
+
+  //title
+
+
+  //author
+
+
+  // book-info
+
+
 }
 
 function appendElements(){
