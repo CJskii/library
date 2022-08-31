@@ -73,12 +73,24 @@ function createCard(){
 
 
 function createCardHeader(){
+  addAttrubutes(header, 'class', 'modify-buttons-dynamic')
+  addAttrubutes(header, 'class', 'newBookText')
+  addAttrubutes(headerText, "text", "Add new book")
+  addChild(header, card)
+  addChild(headerText, header)
+}
 
-  header.setAttribute('class', 'modify-buttons-dynamic')
-  headerText.setAttribute("class", 'newBookText' )
-  headerText.textContent = "Add new book"
-  card.appendChild(header)
-  header.appendChild(headerText)
+function addAttrubutes(x, y, z){
+  let element = x
+  if (y == 'class'){
+    element.classList = z
+  } else if(y == 'text'){
+    element.textContent = z
+  }
+}
+
+function addChild(element, parent){
+  parent.appendChild(element)
 }
 
 function createTitle(){
