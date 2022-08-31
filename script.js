@@ -5,7 +5,7 @@ const mainWrapper = document.querySelector('.main-content')
 const contentWrapper = document.querySelector('.content-wrapper')
 let card = document.createElement('div')
 let header = document.createElement('div')
-let headerText = document.createElement('button')
+let headerText = document.createElement('span')
 let title = document.createElement('div')
 let titleSpan = document.createElement('span')
 let titleInput = document.createElement('input')
@@ -14,8 +14,12 @@ let authorInput = document.createElement('input')
 let pagesInput = document.createElement('input')
 let toggle = document.createElement('div')
 let toggleBtn = document.createElement('button')
+let submit = document.createElement('div')
+let submitBtn = document.createElement('button')
+let nosubmitBtn = document.createElement('button')
 newBook.addEventListener('click', userPrompt);
 toggleBtn.addEventListener('click', buttonToggler);
+nosubmitBtn.addEventListener('click', hideInputCard)
 
 function Book(title, author, pages, read) {
   this.title = title
@@ -39,6 +43,9 @@ let confirmBtn = document.createElement('button')
 let cancelBtn = document.createElement('button')
 let readSpan = document.createElement('span')
 */
+
+
+
 function userPrompt(){ // prompts user with form
   createCard()
   createCardHeader()
@@ -49,15 +56,26 @@ function userPrompt(){ // prompts user with form
   createSubmit()
 }
 
-function createCard(){
-  card.setAttribute('class', 'card-dynamic')
-  mainWrapper.appendChild(card)
+function hideInputCard(){
+  card.remove()
 }
 
+function createCard(){
+  const hasClass = card.classList.contains('hidden')
+  if (hasClass == false){
+    card.setAttribute('class', 'card-dynamic')
+    mainWrapper.appendChild(card)
+  } else if(hasClass == true){
+    card.classList.remove("hidden")
+    mainWrapper.appendChild(card)
+  }
+}
+
+
 function createCardHeader(){
+
   header.setAttribute('class', 'modify-buttons-dynamic')
-  headerText.setAttribute("class", 'edit' )
-  headerText.setAttribute("type", 'text' )
+  headerText.setAttribute("class", 'newBookText' )
   headerText.textContent = "Add new book"
   card.appendChild(header)
   header.appendChild(headerText)
@@ -65,7 +83,7 @@ function createCardHeader(){
 
 function createTitle(){
   title.setAttribute('class', 'title-dynamic')
-  titleInput.setAttribute('placeholder', 'Title...')
+  titleInput.setAttribute('placeholder', 'Enter book title...')
   title.appendChild(titleSpan)
   title.appendChild(titleInput)
   card.appendChild(title)
@@ -74,7 +92,7 @@ function createTitle(){
 function createAuthor(){
   author.setAttribute('class', 'author-dynamic')
   authorInput.setAttribute('type' , 'author-dynamic')
-  authorInput.setAttribute('placeholder', 'Author...')
+  authorInput.setAttribute('placeholder', 'Enter book author...')
   author.appendChild(authorInput)
   card.appendChild(author)
 }
@@ -83,7 +101,7 @@ function createPages(){
   let pages = document.createElement('div')
   pages.setAttribute('class', 'pages-dynamic')
   pagesInput.setAttribute('type', 'pages')
-  pagesInput.setAttribute('placeholder', 'Pages...')
+  pagesInput.setAttribute('placeholder', 'Enter book pages...')
   pages.appendChild(pagesInput)
   card.appendChild(pages)
 }
@@ -97,12 +115,9 @@ function createReadToggle(){
 }
 
 function createSubmit(){
-  let submit = document.createElement('div')
   submit.setAttribute('class', 'submit-dynamic')
-  let submitBtn = document.createElement('button')
   submitBtn.setAttribute('class', 'submitbtn')
   submitBtn.textContent = "ADD"
-  let nosubmitBtn = document.createElement('button')
   nosubmitBtn.setAttribute('class', 'nosubmitbtn')
   nosubmitBtn.textContent = "CANCEL"
   submit.appendChild(submitBtn)
