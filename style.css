@@ -127,6 +127,19 @@ html, body{
     width: 100%;
     height: 100%;
     background-color: rgba(57, 119, 119, 0.521);
+    display: grid;
+    grid-template-columns: .1fr 1fr;
+    grid-template-rows: .1fr 1fr;
+}
+
+.title>p{
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.title>span{
+    font-size: .6rem;
+    padding: .3rem;
+    color: white
 }
 
 .author{
@@ -167,6 +180,28 @@ html, body{
     align-items: center;
     width: 100%;
     height: 100%;
+}
+
+button[type="text"]{
+    grid-column-end: span 2;
+    font-size: 1.2rem;
+    letter-spacing: .2rem;
+    background-color: rgba(57, 119, 119, 0.521);
+}
+
+input[type=text]{
+    width: 90%;
+    height: 90%;
+    padding: 35px 5px; 
+    line-height: 28px;
+    font-size: 1.3rem;
+    overflow: hidden;
+}
+
+input[type=author]{
+    padding-left: 5rem;
+    padding-top: 1rem;
+    font-size: .6rem;
 }
 
 /*
