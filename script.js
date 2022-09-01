@@ -20,7 +20,10 @@ let submitBtn = document.createElement('button')
 let nosubmitBtn = document.createElement('button')
 newBook.addEventListener('click', userPrompt);
 toggleBtn.addEventListener('click', buttonToggler);
-nosubmitBtn.addEventListener('click', hideInputCard)
+nosubmitBtn.addEventListener('click', hideInputCard);
+
+
+
 
 function Book(title, author, pages, read) {
   this.title = title
@@ -32,6 +35,13 @@ function Book(title, author, pages, read) {
 
 const book1 = new Book("Jozef z Bazin", "Wariat na rowerze", "555", "yes")
 const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no")
+
+
+
+function dataHandler(e){
+  
+}
+
 
 function addAttrubutes(x, y, z){
   let element = x
@@ -67,6 +77,8 @@ function userPrompt(){ // prompts user with form
   createPages()
   createReadToggle()
   createSubmit()
+  let inputs = document.querySelectorAll('input')
+  inputs.forEach(input => input.addEventListener('input', dataHandler))
 }
 
 function createCard(){
@@ -86,6 +98,7 @@ function createCardHeader(){
 function createTitle(){
   addAttrubutes(title, "class", "title-dynamic")
   addAttrubutes(titleInput, 'placeholder', 'Enter book title...')
+  addAttrubutes(titleInput, 'class', 'title-input')
   appendElements(titleSpan, title)
   appendElements(titleInput, title)
   appendElements(title, card)
@@ -95,6 +108,7 @@ function createAuthor(){
   addAttrubutes(author, "class", "author-dynamic")
   addAttrubutes(authorInput, "type", 'author-dynamic')
   addAttrubutes(authorInput, "placeholder", "Enter book author...")
+  addAttrubutes(authorInput, 'class', 'author-input')
   appendElements(authorInput, author)
   appendElements(author, card)
 }
@@ -103,6 +117,7 @@ function createPages(){
   addAttrubutes(pages, 'class', 'pages-dynamic')
   addAttrubutes(pagesInput, 'type', 'pages')
   addAttrubutes(pagesInput, 'placeholder', 'Enter book pages...' )
+  addAttrubutes(pagesInput, 'class', 'pages-input')
   appendElements(pagesInput, pages)
   appendElements(pages, card)
 }
