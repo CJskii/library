@@ -22,7 +22,11 @@ newBook.addEventListener('click', userPrompt);
 toggleBtn.addEventListener('click', buttonToggler);
 nosubmitBtn.addEventListener('click', hideInputCard);
 
+let titleString = null
+let authorString = null
+let pagesString = null
 
+console.log("Book " + titleString + " written by" + " " + authorString + " " + "has " + pagesString + " pages.")
 
 
 function Book(title, author, pages, read) {
@@ -39,7 +43,17 @@ const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no")
 
 
 function dataHandler(e){
-  
+  const inputClass = e.target.classList
+  if (inputClass == 'title-input'){
+    let titleStr = e.target.value
+    titleString = titleStr
+  } else if (inputClass == 'author-input'){
+    let authorStr = e.target.value
+    authorString = authorStr
+  } else if (inputClass == 'pages-input'){
+    let pageStr = e.target.value
+    pagesString = pageStr
+  }
 }
 
 
