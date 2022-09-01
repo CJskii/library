@@ -21,12 +21,13 @@ let nosubmitBtn = document.createElement('button')
 newBook.addEventListener('click', userPrompt);
 toggleBtn.addEventListener('click', buttonToggler);
 nosubmitBtn.addEventListener('click', hideInputCard);
+submitBtn.addEventListener('click', submitData)
 
-let titleString = null
-let authorString = null
-let pagesString = null
+let titleString = null // gets value from dataHandler
+let authorString = null // gets value from dataHandler
+let pagesString = null // gets value from dataHandler
+let readStatus = null // true/false from buttonToggler
 
-console.log("Book " + titleString + " written by" + " " + authorString + " " + "has " + pagesString + " pages.")
 
 
 function Book(title, author, pages, read) {
@@ -40,7 +41,11 @@ function Book(title, author, pages, read) {
 const book1 = new Book("Jozef z Bazin", "Wariat na rowerze", "555", "yes")
 const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no")
 
-
+function submitData(){
+  let book = new Book(titleString, authorString, pagesString, readStatus)
+  myLibrary.push(book)
+  hideInputCard()
+}
 
 function dataHandler(e){
   const inputClass = e.target.classList
@@ -157,14 +162,14 @@ function createSubmit(){
 
 function buttonToggler(e){
   const hasClass = e.target.classList.contains('OFF')
-  console.log(hasClass)
   if (hasClass == true){
-    console.log(toggleBtn.classList.value)
     toggleBtn.classList.value = "ON"
     toggleBtn.textContent = "READ"
+    readStatus = hasClass
   } else if(hasClass == false){
     toggleBtn.classList.value = "OFF"
     toggleBtn.textContent = "NOT READ"
+    readStatus = hasClass
   }
 }
 
