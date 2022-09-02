@@ -26,7 +26,7 @@ submitBtn.addEventListener('click', submitData)
 let titleString = null // gets value from dataHandler
 let authorString = null // gets value from dataHandler
 let pagesString = null // gets value from dataHandler
-let readStatus = null // true/false from buttonToggler
+let readStatus = false // true/false from buttonToggler
 
 
 
@@ -35,8 +35,8 @@ function Book(title, author, pages, read) {
   this.author = author
   this.pages = pages
   this.read = read
+  this.index = myLibrary.length
 }
-
 
 const book1 = new Book("Jozef z Bazin", "Wariat na rowerze", "555", "yes")
 const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no")
@@ -44,8 +44,27 @@ const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no")
 function submitData(){
   let book = new Book(titleString, authorString, pagesString, readStatus)
   myLibrary.push(book)
+  clearInputs()
   hideInputCard()
+  return addBookToLibrary(book)
 }
+
+
+function clearInputs(){
+  titleInput.value = null
+  authorInput.value = null
+  pagesInput.value = null
+  readStatus = false
+}
+
+function addBookToLibrary(book) {
+  
+}
+
+function removeAddButton(){
+  newBook.remove()
+}
+
 
 function dataHandler(e){
   const inputClass = e.target.classList
@@ -176,13 +195,6 @@ function buttonToggler(e){
 
 
 
-function addBookToLibrary() {
-  // do stuff here
-  // click button --> create form prompt
-  // user enter -- > title, author, pages, read
-  // on submit -- addBookToLibrary
-  // remove prompt
-}
 
 /*
 Write a function that loops through the array and displays each book on the page. 
