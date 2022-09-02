@@ -57,9 +57,50 @@ function clearInputs(){
   readStatus = false
 }
 
+
 function addBookToLibrary(book) {
-  
+  bookContainer()
 }
+
+function bookContainer(){
+  let topButtons = document.createElement('div')
+  addAttrubutes(topButtons, "class", "modify-buttons")
+  appendElements(topButtons, card)
+  let editBtn = document.createElement('button')
+  addAttrubutes(editBtn, "class", "edit")
+  let deleteBtn = document.createElement('button')
+  addAttrubutes(deleteBtn, "class", "delete")
+  appendElements(editBtn, topButtons)
+  appendElements(deleteBtn, topButtons)
+  let bookSpan = document.createElement('span')
+  let bookPara = document.createElement('p')
+  appendElements(bookSpan, title)
+  appendElements(bookPara, title)
+  appendElements(title, card)
+  let authorSpan = document.createElement('span')
+  appendElements(authorSpan, author)
+  appendElements(author, card)
+  let bookInfo = document.createElement('div')
+  addAttrubutes(bookInfo, 'class', 'book-info')
+  let pagesSpan = document.createElement('span')
+  appendElements(pagesSpan,bookInfo)
+  let confirmWrap = document.createElement('div')
+  addAttrubutes(confirmWrap, 'class', 'confirm-wrap')
+  let confirmBtn = document.createElement('button')
+  addAttrubutes(confirmBtn, 'class', 'confirm')
+  addAttrubutes(confirmBtn, 'text', '✓')
+  let cancelBtn = document.createElement('button')
+  addAttrubutes(cancelBtn, 'class', 'cancel')
+  addAttrubutes(cancelBtn, 'text', 'X')
+  let readSpan = document.createElement('span')
+  appendElements(confirmWrap, bookInfo)
+  appendElements(confirmBtn, confirmWrap)
+  appendElements(cancelBtn, confirmWrap)
+  appendElements(readSpan, bookInfo)
+  appendElements(bookInfo, card)
+  appendElements(card, mainWrapper)
+}
+
 
 function removeAddButton(){
   newBook.remove()
