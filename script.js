@@ -42,6 +42,10 @@ const book1 = new Book("Jozef z Bazin", "Wariat na rowerze", "555", "yes")
 const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no")
 
 function submitData(){
+  /*
+  if (titleString == null || authorString == null || pagesString == null){
+    return;
+  }*/
   let book = new Book(titleString, authorString, pagesString, readStatus)
   myLibrary.push(book)
   clearInputs()
@@ -59,14 +63,15 @@ function clearInputs(){
 
 
 function addBookToLibrary(book) {
-  bookContainer()
+  new bookContainer()
 }
 
 function bookContainer(){
-  addAttrubutes(card, "class", "card")
+  let cardBook = document.createElement('div')
+  addAttrubutes(cardBook, "class", "card")
   let topButtons = document.createElement('div')
   addAttrubutes(topButtons, "class", "modify-buttons")
-  appendElements(topButtons, card)
+  appendElements(topButtons, cardBook)
   let editBtn = document.createElement('button')
   addAttrubutes(editBtn, "class", "edit")
   addAttrubutes(editBtn, "text", 'EDIT')
@@ -76,15 +81,16 @@ function bookContainer(){
   appendElements(editBtn, topButtons)
   appendElements(deleteBtn, topButtons)
   let bookSpan = document.createElement('span')
+  addAttrubutes(bookSpan, "text", "Book: ")
   let bookPara = document.createElement('p')
   addAttrubutes(title, "class", "title")
   appendElements(bookSpan, title)
   appendElements(bookPara, title)
-  appendElements(title, card)
+  appendElements(title, cardBook)
   let authorSpan = document.createElement('span')
   addAttrubutes(author, "class", "author")
   appendElements(authorSpan, author)
-  appendElements(author, card)
+  appendElements(author, cardBook)
   let bookInfo = document.createElement('div')
   addAttrubutes(bookInfo, "class", "book-info")
   let pagesSpan = document.createElement('span')
@@ -102,8 +108,8 @@ function bookContainer(){
   appendElements(confirmBtn, confirmWrap)
   appendElements(cancelBtn, confirmWrap)
   appendElements(readSpan, bookInfo)
-  appendElements(bookInfo, card)
-  appendElements(card, mainWrapper)
+  appendElements(bookInfo, cardBook)
+  appendElements(cardBook, mainWrapper)
 }
 
 
@@ -145,6 +151,9 @@ function appendElements(element, parent){
 }
 
 function hideInputCard(){
+  titleSpan.remove()
+  titleInput.remove()
+  authorInput.remove()
   card.remove()
 }
 
@@ -165,10 +174,13 @@ function userPrompt(){ // prompts user with form
   inputs.forEach(input => input.addEventListener('input', dataHandler))
 }
 
-function createCard(){
+function createCard(type){
   //const hasClass = card.classList.contains('hidden')
   addAttrubutes(card, 'class', 'card-dynamic')
   appendElements(card, mainWrapper)
+  if (type == 'book'){
+    addAttrubutes(card, 'class', 'card')
+  }
 }
 
 function createCardHeader(){
