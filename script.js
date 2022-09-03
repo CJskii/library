@@ -48,6 +48,7 @@ function submitData(){
   }*/
   let book = new Book(titleString, authorString, pagesString, readStatus)
   myLibrary.push(book)
+  removeAddButton()
   clearInputs()
   hideInputCard()
   return addBookToLibrary(book)
@@ -63,7 +64,16 @@ function clearInputs(){
 
 
 function addBookToLibrary(book) {
-  new bookContainer()
+  bookContainer()
+  addAddButton()
+}
+
+function addAddButton(){
+  let addBook = document.createElement('button')
+  addAttrubutes(addBook, "class", "new-book")
+  addAttrubutes(addBook, "text", "+")
+  appendElements(addBook, mainWrapper)
+  addBook.addEventListener('click', userPrompt);
 }
 
 function bookContainer(){
@@ -83,10 +93,12 @@ function bookContainer(){
   let bookSpan = document.createElement('span')
   addAttrubutes(bookSpan, "text", "Book: ")
   let bookPara = document.createElement('p')
+  let title = document.createElement('div')
   addAttrubutes(title, "class", "title")
   appendElements(bookSpan, title)
   appendElements(bookPara, title)
   appendElements(title, cardBook)
+  let author = document.createElement('div')
   let authorSpan = document.createElement('span')
   addAttrubutes(author, "class", "author")
   appendElements(authorSpan, author)
@@ -114,7 +126,8 @@ function bookContainer(){
 
 
 function removeAddButton(){
-  newBook.remove()
+  let button = document.querySelector('.new-book')
+  button.remove()
 }
 
 
