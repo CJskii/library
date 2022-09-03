@@ -48,10 +48,8 @@ function submitData(){
   }*/
   let book = new Book(titleString, authorString, pagesString, readStatus)
   myLibrary.push(book)
-  removeAddButton()
-  clearInputs()
-  hideInputCard()
-  return addBookToLibrary(book)
+  console.log(book)
+  return addBookToLibrary(book.title, book.author, book.pages, book.read)
 }
 
 
@@ -63,20 +61,7 @@ function clearInputs(){
 }
 
 
-function addBookToLibrary(book) {
-  bookContainer()
-  addAddButton()
-}
-
-function addAddButton(){
-  let addBook = document.createElement('button')
-  addAttrubutes(addBook, "class", "new-book")
-  addAttrubutes(addBook, "text", "+")
-  appendElements(addBook, mainWrapper)
-  addBook.addEventListener('click', userPrompt);
-}
-
-function bookContainer(){
+function addBookToLibrary(bookTitle, authorText, pagesText, bookStatus) {
   let cardBook = document.createElement('div')
   addAttrubutes(cardBook, "class", "card")
   let topButtons = document.createElement('div')
@@ -95,17 +80,20 @@ function bookContainer(){
   let bookPara = document.createElement('p')
   let title = document.createElement('div')
   addAttrubutes(title, "class", "title")
+  addAttrubutes(bookPara, "text", bookTitle)
   appendElements(bookSpan, title)
   appendElements(bookPara, title)
   appendElements(title, cardBook)
   let author = document.createElement('div')
   let authorSpan = document.createElement('span')
   addAttrubutes(author, "class", "author")
+  addAttrubutes(authorSpan, "text", authorText)
   appendElements(authorSpan, author)
   appendElements(author, cardBook)
   let bookInfo = document.createElement('div')
   addAttrubutes(bookInfo, "class", "book-info")
   let pagesSpan = document.createElement('span')
+  addAttrubutes(pagesSpan, "text", pagesText)
   appendElements(pagesSpan,bookInfo)
   let confirmWrap = document.createElement('div')
   addAttrubutes(confirmWrap, "class", "confirm-wrap")
@@ -116,12 +104,33 @@ function bookContainer(){
   addAttrubutes(cancelBtn, "class", "cancel")
   addAttrubutes(cancelBtn, "text", "X")
   let readSpan = document.createElement('span')
+  if (readStatus == false){
+    addAttrubutes(readSpan, "text", "No")
+  } else if (readStatus == true){
+    addAttrubutes(readSpan, "text", "Yes")
+  }
   appendElements(confirmWrap, bookInfo)
   appendElements(confirmBtn, confirmWrap)
   appendElements(cancelBtn, confirmWrap)
   appendElements(readSpan, bookInfo)
   appendElements(bookInfo, cardBook)
   appendElements(cardBook, mainWrapper)
+  clearInputs()
+  removeAddButton()
+  hideInputCard()
+  addAddButton()
+}
+
+function addAddButton(){
+  let addBook = document.createElement('button')
+  addAttrubutes(addBook, "class", "new-book")
+  addAttrubutes(addBook, "text", "+")
+  appendElements(addBook, mainWrapper)
+  addBook.addEventListener('click', userPrompt);
+}
+
+function bookContainer(titleString, authorString, pagesString, readStatus){
+  
 }
 
 
