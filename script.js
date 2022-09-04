@@ -29,6 +29,28 @@ let pagesString = null // gets value from dataHandler
 let readStatus = false // true/false from buttonToggler
 
 
+// VARIABLES
+
+// BOOK CONSTRUCTOR
+
+// CARD CONSTRUCTOR
+
+// DYNAMIC CARD CONSTRUCTOR
+
+// USER PROMPT FOR BOOK INFO
+
+// ADD TO LIBRARY
+
+// DISPLAY BOOKS
+
+// EDIT BOOK
+
+// DELETE BOOK
+
+// CONFIRM, DECLINE
+
+
+
 
 function Book(title, author, pages, read, index) {
   this.title = title
