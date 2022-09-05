@@ -41,6 +41,32 @@ function Book(title, author, pages, read, index) {
   this.pages = pages
   this.read = read
 }
+/*
+let book1 = new Book("Harry Potter i komnata tajemnic", "J.K Rowling", "585", "false")
+let book2 = new Book("Harry Potter i kamien filozoficzny", "J.K Rowling", "666", "false")
+let book3 = new Book("Harry Potter i wiezien azkabanu", "J.K Rowling", "522", "false")
+let book4 = new Book("Harry Potter i czara ognia", "J.K Rowling", "896", "false")
+let book5 = new Book("Harry Potter i zakon feniksa", "J.K Rowling", "145", "false")
+let book6 = new Book("Harry Potter i ksiaze polkrwii", "J.K Rowling", "755", "false")
+let book7 = new Book("Harry Potter", "J.K Rowling", "256", "true")
+let book8 = new Book("Harry Potter", "J.K Rowling", "265", "true")
+let book9 = new Book("Harry Potter", "J.K Rowling", "643", "true")
+
+myLibrary.push(book1)
+myLibrary.push(book2)
+myLibrary.push(book3)
+myLibrary.push(book4)
+myLibrary.push(book5)
+myLibrary.push(book6)
+myLibrary.push(book7)
+myLibrary.push(book8)
+myLibrary.push(book9)
+*/
+
+// BOOK INFORMATION
+
+
+
 
 // DATA HANDLER 
 
@@ -137,22 +163,17 @@ function displayBooks(){
   let card = document.querySelectorAll('.card')
   card.forEach(div => div.remove())
   for (let i = 0; i < myLibrary.length; i++){
-    let cardBook = document.createElement('div')
+  let cardBook = document.createElement('div')
   addAttrubutes(cardBook, "class", "card")
   addAttrubutes(card, "data", i)
-  let topButtons = document.createElement('div')
-  addAttrubutes(topButtons, "class", "modify-buttons")
-  appendElements(topButtons, cardBook)
-  let editBtn = document.createElement('button')
-  addAttrubutes(editBtn, "class", "edit")
-  addAttrubutes(editBtn, "text", 'EDIT')
-  addAttrubutes(editBtn, "data", i)
-  let deleteBtn = document.createElement('button')
-  addAttrubutes(deleteBtn, "class", "delete")
-  addAttrubutes(deleteBtn, "text", "DELETE")
-  appendElements(editBtn, topButtons)
-  appendElements(deleteBtn, topButtons)
-  addAttrubutes(deleteBtn, "data", i)
+  let bookParaContainer = document.createElement('div')
+  addAttrubutes(bookParaContainer, "class", "modify-buttons")
+  appendElements(bookParaContainer, cardBook)
+  let bookParagraph = document.createElement('span')
+  addAttrubutes(bookParagraph, "class", "book-paragraph")
+  addAttrubutes(bookParagraph, "text", 'Book ' + (i + 1))
+  addAttrubutes(bookParagraph, "data", i)
+  appendElements(bookParagraph, bookParaContainer) 
   let bookSpan = document.createElement('span')
   addAttrubutes(bookSpan, "text", "Book: ")
   let bookPara = document.createElement('p')
@@ -177,17 +198,21 @@ function displayBooks(){
   addAttrubutes(confirmWrap, "class", "confirm-wrap")
   let confirmBtn = document.createElement('button')
   addAttrubutes(confirmBtn, "class", "confirm")
-  addAttrubutes(confirmBtn, "text", "✓")
+  addAttrubutes(confirmBtn, "text", "...")
+  addAttrubutes(confirmBtn, "data", i)
   let cancelBtn = document.createElement('button')
   addAttrubutes(cancelBtn, "class", "cancel")
   addAttrubutes(cancelBtn, "text", "X")
+  addAttrubutes(cancelBtn, "data", i)
   let readSpan = document.createElement('button')
   addAttrubutes(readSpan, "class", "read-btn")
   addAttrubutes(readSpan, "data", i)
   if (myLibrary[i].read == false){
-    addAttrubutes(readSpan, "text", "No")
+    addAttrubutes(readSpan, "text", "Not read")
+    addAttrubutes(readSpan, "type", "notread")
   } else if (myLibrary[i].read == true){
-    addAttrubutes(readSpan, "text", "Yes")
+    addAttrubutes(readSpan, "text", "Read")
+    addAttrubutes(readSpan, "type", "read")
   }
   appendElements(confirmWrap, bookInfo)
   appendElements(confirmBtn, confirmWrap)
@@ -195,17 +220,21 @@ function displayBooks(){
   appendElements(readSpan, bookInfo)
   appendElements(bookInfo, cardBook)
   appendElements(cardBook, mainWrapper)
-  console.log(card.data)
   }
-  let editBtns = document.querySelectorAll('.edit')
+  let editBtns = document.querySelectorAll('.confirm')
   editBtns.forEach(button => button.addEventListener('click', editBook))
-  let deleteBtns = document.querySelectorAll('.delete')
+  let deleteBtns = document.querySelectorAll('.cancel')
   deleteBtns.forEach(button => button.addEventListener('click', deleteBook))
   let readBtns = document.querySelectorAll('.read-btn')
   readBtns.forEach(button => button.addEventListener('click', readToggler)) 
   removeAddButton()
   addAddButton()
+  
 }
+
+// BOOK INFORMATION
+
+
 
 // EDIT BOOK
 
@@ -295,12 +324,13 @@ function readToggler(){
     this.classList = "read"
     myLibrary[index].read = true
     addAttrubutes(this, "text", "Read")
+    addAttrubutes(this, "type", "read")
   } else if (readStatus == true){
     this.classList = "notread"
     myLibrary[index].read = false
     addAttrubutes(this, "text", "Not read")
+    addAttrubutes(this, "type", "notread")
   }
-  
 }
 
 // ATTRIBUTES
@@ -310,6 +340,12 @@ function clearInputs(){
   authorInput.value = null
   pagesInput.value = null
   readStatus = false
+  /*
+  titleString = null
+  authorString = null
+  pagesString = null
+  readStatus = false
+  */
 }
 
 function addAttrubutes(x, y, z){
