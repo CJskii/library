@@ -20,13 +20,13 @@ let toggleBtn = document.createElement('button')
 let submit = document.createElement('div')
 let submitBtn = document.createElement('button')
 let nosubmitBtn = document.createElement('button')
-
 //EventListeners
 
 newBook.addEventListener('click', userPrompt);
 //toggleBtn.addEventListener('click', buttonToggler);
 nosubmitBtn.addEventListener('click', hideInputCard);
 submitBtn.addEventListener('click', submitData)
+
 
 let titleString = null // gets value from dataHandler
 let authorString = null // gets value from dataHandler
@@ -139,6 +139,10 @@ function dataHandler(e){
 // USER PROMPT FOR BOOK INFO
 
 function userPrompt(){
+  card.remove()
+  let pages = document.createElement('div')
+  let title = document.createElement('div')
+  let author = document.createElement('div')
   addAttrubutes(card, 'class', 'card-dynamic')
   appendElements(card, mainWrapper)
   addAttrubutes(header, 'class', 'modify-buttons-dynamic')
@@ -184,17 +188,25 @@ function userPrompt(){
 // ADD TO LIBRARY
 
 function submitData(){
-  /*
   if (titleString == null || authorString == null || pagesString == null){
     return;
-  }*/
-  let book = new Book(titleString, authorString, pagesString, readStatus)
-  myLibrary.push(book)
-  clearInputs()
-  hideInputCard()
-  displayBooks()
-  console.log(myLibrary)
-  return //addBookToLibrary(book.title, book.author, book.pages, book.read)
+  } else if (this.textContent == "ADD"){
+    let book = new Book(titleString, authorString, pagesString, readStatus)
+    myLibrary.push(book)
+    clearInputs()
+    hideInputCard()
+    displayBooks()
+    console.log(myLibrary)
+    return
+  } else if (this.textContent == "SUBMIT"){
+    myLibrary[this.data].title = titleString
+    myLibrary[this.data].author = authorString
+    myLibrary[this.data].pages = pagesString
+    myLibrary[this.data].read = readStatus
+    clearInputs()
+    hideInputCard()
+    displayBooks()
+  }
 }
 
 // DISPLAY BOOKS
@@ -214,6 +226,7 @@ function displayBooks(){
   let editBtn = document.createElement('button')
   addAttrubutes(editBtn, "class", "edit")
   addAttrubutes(editBtn, "text", 'EDIT')
+  addAttrubutes(editBtn, "data", i)
 
   let deleteBtn = document.createElement('button')
   addAttrubutes(deleteBtn, "class", "delete")
@@ -261,17 +274,80 @@ function displayBooks(){
   appendElements(cardBook, mainWrapper)
   console.log(card.data)
   }
+  let editBtns = document.querySelectorAll('.edit')
+  editBtns.forEach(button => button.addEventListener('click', editBook))
   removeAddButton()
   addAddButton()
 }
 
-// BOOK CARD EVENT LISENERS --- initiate when book card was created
-
-
-
 // EDIT BOOK
 
+function editBook(){
+  index = this.data
+  title = myLibrary[index].title
+  author = myLibrary[index].author
+  pages = myLibrary[index].pages
+  read = myLibrary[index].read
+  console.log("You try to edit book " + title + " written by " + author + " which has " + pages + " pages " )
+  return userEdit(index)
+}
+
+function userEdit(index){
+  card.remove()
+  let pages = document.createElement('div')
+  let title = document.createElement('div')
+  let author = document.createElement('div')
+  addAttrubutes(card, 'class', 'card-dynamic')
+  appendElements(card, mainWrapper)
+  addAttrubutes(header, 'class', 'modify-buttons-dynamic')
+  addAttrubutes(header, 'class', 'newBookText')
+  addAttrubutes(headerText, "text", "Edit book: ")
+  appendElements(header, card)
+  appendElements(headerText, header)
+  addAttrubutes(title, "class", "title-dynamic")
+  addAttrubutes(titleInput, 'value', myLibrary[index].title)
+  addAttrubutes(titleInput, 'class', 'title-input')
+  appendElements(titleSpan, title)
+  appendElements(titleInput, title)
+  appendElements(title, card)
+  addAttrubutes(author, "class", "author-dynamic")
+  addAttrubutes(authorInput, "type", 'author-dynamic')
+  addAttrubutes(authorInput, "value", myLibrary[index].author)
+  addAttrubutes(authorInput, 'class', 'author-input')
+  appendElements(authorInput, author)
+  appendElements(author, card)
+  addAttrubutes(pages, 'class', 'pages-dynamic')
+  addAttrubutes(pagesInput, 'type', 'pages')
+  addAttrubutes(pagesInput, 'value', myLibrary[index].pages )
+  addAttrubutes(pagesInput, 'class', 'pages-input')
+  appendElements(pagesInput, pages)
+  appendElements(pages, card)
+  addAttrubutes(toggle, 'class', 'toggle-dynamic')
+  addAttrubutes(toggleBtn, 'class', 'OFF')
+  addAttrubutes(toggleBtn, 'value', myLibrary[index].read)
+  appendElements(toggleBtn, toggle)
+  appendElements(toggle, card)
+  addAttrubutes(submit, 'class', 'submit-dynamic')
+  addAttrubutes(submitBtn, 'class', 'submitbtn')
+  addAttrubutes(submitBtn, 'text', "SUBMIT")
+  addAttrubutes(submitBtn, "data", index)
+  addAttrubutes(nosubmitBtn, 'class', 'nosubmitbtn')
+  addAttrubutes(nosubmitBtn, 'text', "CANCEL")
+  appendElements(submitBtn, submit)
+  appendElements(nosubmitBtn, submit)
+  appendElements(submit, card)
+}
+
+function submitEditedBook(index){
+
+}
+
+
 // DELETE BOOK
+
+function deleteBook(){
+
+}
 
 // CONFIRM, DECLINE
 
@@ -299,6 +375,8 @@ function addAttrubutes(x, y, z){
     element.type = z
   } else if (y == 'data'){
     element.data = z
+  } else if (y == 'value'){
+    element.value = z
   }
 }
 
