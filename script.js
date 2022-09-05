@@ -23,7 +23,7 @@ let nosubmitBtn = document.createElement('button')
 //EventListeners
 
 newBook.addEventListener('click', userPrompt);
-//toggleBtn.addEventListener('click', buttonToggler);
+toggleBtn.addEventListener('click', buttonToggler);
 nosubmitBtn.addEventListener('click', hideInputCard);
 submitBtn.addEventListener('click', submitData)
 
@@ -40,82 +40,6 @@ function Book(title, author, pages, read, index) {
   this.author = author
   this.pages = pages
   this.read = read
-  this.index = index
-}
-
-const book1 = new Book("Jozef z Bazin", "Wariat na rowerze", "555", "yes", "0")
-const book2 = new Book("Drugi Autor", "Druga ksiazka", "123", "no", "1")
-const book3 = new Book("Jozef z Bazin", "Trzecia ksiazka", "555", "yes", "2")
-const book4 = new Book("Jozef z Bazin", "czwarta ksiazka", "555", "yes", "3")
-
-myLibrary.push(book1)
-myLibrary.push(book2)
-myLibrary.push(book3)
-myLibrary.push(book4)
-console.log(myLibrary)
-
-// CARD CONSTRUCTOR
-
-function createNewCard(){
-  let cardBook = document.createElement('div')
-  addAttrubutes(cardBook, "class", "card")
-
-  let topButtons = document.createElement('div')
-  addAttrubutes(topButtons, "class", "modify-buttons")
-  appendElements(topButtons, cardBook)
-
-  let editBtn = document.createElement('button')
-  addAttrubutes(editBtn, "class", "edit")
-  addAttrubutes(editBtn, "text", 'EDIT')
-
-  let deleteBtn = document.createElement('button')
-  addAttrubutes(deleteBtn, "class", "delete")
-  addAttrubutes(deleteBtn, "text", "DELETE")
-  appendElements(editBtn, topButtons)
-  appendElements(deleteBtn, topButtons)
-
-  let bookSpan = document.createElement('span')
-  addAttrubutes(bookSpan, "text", "Book: ")
-  let bookPara = document.createElement('p')
-  let title = document.createElement('div')
-  addAttrubutes(title, "class", "title")
-  addAttrubutes(bookPara, "text", bookTitle)
-  appendElements(bookSpan, title)
-  appendElements(bookPara, title)
-  appendElements(title, cardBook)
-
-  let author = document.createElement('div')
-  let authorSpan = document.createElement('span')
-  addAttrubutes(author, "class", "author")
-  addAttrubutes(authorSpan, "text", authorText)
-  appendElements(authorSpan, author)
-  appendElements(author, cardBook)
-  
-  let bookInfo = document.createElement('div')
-  addAttrubutes(bookInfo, "class", "book-info")
-  let pagesSpan = document.createElement('span')
-  addAttrubutes(pagesSpan, "text", pagesText)
-  appendElements(pagesSpan,bookInfo)
-  let confirmWrap = document.createElement('div')
-  addAttrubutes(confirmWrap, "class", "confirm-wrap")
-  let confirmBtn = document.createElement('button')
-  addAttrubutes(confirmBtn, "class", "confirm")
-  addAttrubutes(confirmBtn, "text", "✓")
-  let cancelBtn = document.createElement('button')
-  addAttrubutes(cancelBtn, "class", "cancel")
-  addAttrubutes(cancelBtn, "text", "X")
-  let readSpan = document.createElement('span')
-  if (readStatus == false){
-    addAttrubutes(readSpan, "text", "No")
-  } else if (readStatus == true){
-    addAttrubutes(readSpan, "text", "Yes")
-  }
-  appendElements(confirmWrap, bookInfo)
-  appendElements(confirmBtn, confirmWrap)
-  appendElements(cancelBtn, confirmWrap)
-  appendElements(readSpan, bookInfo)
-  appendElements(bookInfo, cardBook)
-  appendElements(cardBook, mainWrapper)
 }
 
 // DATA HANDLER 
@@ -133,8 +57,6 @@ function dataHandler(e){
     pagesString = pageStr
   }
 }
-
-// DYNAMIC CARD CONSTRUCTOR
 
 // USER PROMPT FOR BOOK INFO
 
@@ -218,23 +140,19 @@ function displayBooks(){
     let cardBook = document.createElement('div')
   addAttrubutes(cardBook, "class", "card")
   addAttrubutes(card, "data", i)
-
   let topButtons = document.createElement('div')
   addAttrubutes(topButtons, "class", "modify-buttons")
   appendElements(topButtons, cardBook)
-
   let editBtn = document.createElement('button')
   addAttrubutes(editBtn, "class", "edit")
   addAttrubutes(editBtn, "text", 'EDIT')
   addAttrubutes(editBtn, "data", i)
-
   let deleteBtn = document.createElement('button')
   addAttrubutes(deleteBtn, "class", "delete")
   addAttrubutes(deleteBtn, "text", "DELETE")
   appendElements(editBtn, topButtons)
   appendElements(deleteBtn, topButtons)
   addAttrubutes(deleteBtn, "data", i)
-
   let bookSpan = document.createElement('span')
   addAttrubutes(bookSpan, "text", "Book: ")
   let bookPara = document.createElement('p')
@@ -244,14 +162,12 @@ function displayBooks(){
   appendElements(bookSpan, title)
   appendElements(bookPara, title)
   appendElements(title, cardBook)
-
   let author = document.createElement('div')
   let authorSpan = document.createElement('span')
   addAttrubutes(author, "class", "author")
   addAttrubutes(authorSpan, "text", myLibrary[i].author)
   appendElements(authorSpan, author)
   appendElements(author, cardBook)
-  
   let bookInfo = document.createElement('div')
   addAttrubutes(bookInfo, "class", "book-info")
   let pagesSpan = document.createElement('span')
@@ -265,8 +181,14 @@ function displayBooks(){
   let cancelBtn = document.createElement('button')
   addAttrubutes(cancelBtn, "class", "cancel")
   addAttrubutes(cancelBtn, "text", "X")
-  let readSpan = document.createElement('span')
-  addAttrubutes(readSpan, "text", myLibrary[i].read)
+  let readSpan = document.createElement('button')
+  addAttrubutes(readSpan, "class", "read-btn")
+  addAttrubutes(readSpan, "data", i)
+  if (myLibrary[i].read == false){
+    addAttrubutes(readSpan, "text", "No")
+  } else if (myLibrary[i].read == true){
+    addAttrubutes(readSpan, "text", "Yes")
+  }
   appendElements(confirmWrap, bookInfo)
   appendElements(confirmBtn, confirmWrap)
   appendElements(cancelBtn, confirmWrap)
@@ -279,6 +201,8 @@ function displayBooks(){
   editBtns.forEach(button => button.addEventListener('click', editBook))
   let deleteBtns = document.querySelectorAll('.delete')
   deleteBtns.forEach(button => button.addEventListener('click', deleteBook))
+  let readBtns = document.querySelectorAll('.read-btn')
+  readBtns.forEach(button => button.addEventListener('click', readToggler)) 
   removeAddButton()
   addAddButton()
 }
@@ -349,10 +273,35 @@ function deleteBook(){
   displayBooks()
 }
 
-// CONFIRM, DECLINE
+// BUTTON TOGGLER
 
-// BOOK ADD 
+function buttonToggler(e){
+  const hasClass = e.target.classList.contains('OFF')
+  if (hasClass == true){
+    toggleBtn.classList.value = "ON"
+    toggleBtn.textContent = "READ"
+    readStatus = hasClass
+  } else if(hasClass == false){
+    toggleBtn.classList.value = "OFF"
+    toggleBtn.textContent = "NOT READ"
+    readStatus = hasClass
+  }
+}
 
+function readToggler(){
+  let index = this.data
+  let readStatus = myLibrary[index].read
+  if (readStatus == false){
+    this.classList = "read"
+    myLibrary[index].read = true
+    addAttrubutes(this, "text", "Read")
+  } else if (readStatus == true){
+    this.classList = "notread"
+    myLibrary[index].read = false
+    addAttrubutes(this, "text", "Not read")
+  }
+  
+}
 
 // ATTRIBUTES
 

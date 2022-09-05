@@ -377,6 +377,23 @@ button[class=OFF]{
     align-self: center;
 }
 
+.read, .notread{
+    width: 80%;
+    height: 60%;
+    justify-self: center;
+    align-self: center;
+    border-radius: 20px;
+    border: none;
+}
+
+.read{
+    background-color: darkgreen;
+}
+
+.notread{
+    background-color: darkred;
+}
+
 /*
 
 .author, .title, .pages, .read{
