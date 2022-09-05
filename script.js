@@ -233,6 +233,7 @@ function displayBooks(){
   addAttrubutes(deleteBtn, "text", "DELETE")
   appendElements(editBtn, topButtons)
   appendElements(deleteBtn, topButtons)
+  addAttrubutes(deleteBtn, "data", i)
 
   let bookSpan = document.createElement('span')
   addAttrubutes(bookSpan, "text", "Book: ")
@@ -276,6 +277,8 @@ function displayBooks(){
   }
   let editBtns = document.querySelectorAll('.edit')
   editBtns.forEach(button => button.addEventListener('click', editBook))
+  let deleteBtns = document.querySelectorAll('.delete')
+  deleteBtns.forEach(button => button.addEventListener('click', deleteBook))
   removeAddButton()
   addAddButton()
 }
@@ -338,15 +341,12 @@ function userEdit(index){
   appendElements(submit, card)
 }
 
-function submitEditedBook(index){
-
-}
-
-
 // DELETE BOOK
 
 function deleteBook(){
-
+  index = this.data
+  myLibrary.splice(index, 1)
+  displayBooks()
 }
 
 // CONFIRM, DECLINE
