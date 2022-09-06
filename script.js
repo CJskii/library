@@ -241,14 +241,70 @@ function displayBooks(){
 
 
 // FILTERS
+
+function updateStatistic(){
+  booksInLibrary()
+  noReadCheck()
+  completedBooksCheck()
+  completedPageCheck()
+  totalPagesCheck()
+}
+// Books in library
+function booksInLibrary(){
+  const books = myLibrary.length
+  let span = document.querySelector('.books')
+  addAttrubutes(span, "text", books)
+}
+
+//Books total pages
+
+
+function totalPagesCheck(){
+  let totalPages = 0
+  for (let i = 0; i < myLibrary.length; i++){
+    let pages = myLibrary[i].pages
+    totalPages += Number(pages)
+  }
+  let span = document.querySelector('.pages')
+  addAttrubutes(span, "text", totalPages)
+}
+
+//Unfinished books
 function noReadCheck(){
   const unreadBooks = myLibrary.filter(book => book.read == false);
   let unfinished = document.querySelector('.unfinished')
   unfinished.textContent = unreadBooks.length
   return unreadBooks.length
 }
+// Completed books
+function completedBooksCheck(){
+  const completedBooks = myLibrary.filter(book => book.read == true);
+  let books = document.querySelector('.completedbooks')
+  books.textContent = completedBooks.length
+  return completedBooks.length
+}
 
-const completedBooks = myLibrary.filter(book => book.read == true);
+// completed pages
+function completedBookFilter(){
+  const books = myLibrary.filter(function (book) {
+    return book.read !== false;
+  });
+  return books
+}
+
+function completedPageCheck(){
+  let myArr = completedBookFilter()
+  let completedPages = 0
+  for (let i = 0; i < myArr.length; i++){
+    let pages = myArr[i].pages
+    completedPages += Number(pages)
+  }
+  let span = document.querySelector('.completedpages')
+  addAttrubutes(span, "text", completedPages)
+}
+
+
+
 
 
 // BOOK INFORMATION
