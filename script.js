@@ -1,4 +1,7 @@
-let myLibrary = [];
+let myLibrary = [{title: '123', author: '123', pages: '123', read: false},
+{title: '234', author: '543', pages: '345', read: true},
+{title: '123', author: '123', pages: '123', read: false}
+];
 
 // VARIABLES
 
@@ -41,7 +44,7 @@ function Book(title, author, pages, read) {
   this.pages = pages
   this.read = read
 }
-
+/*
 let book1 = new Book("Harry Potter i komnata tajemnic", "J.K Rowling", "585", "false")
 let book2 = new Book("Harry Potter i kamien filozoficzny", "J.K Rowling", "666", "true")
 let book3 = new Book("Harry Potter i wiezien azkabanu", "J.K Rowling", "522", "false")
@@ -62,6 +65,7 @@ myLibrary.push(book7)
 myLibrary.push(book8)
 myLibrary.push(book9)
 
+*/
 
 // BOOK INFORMATION
 
@@ -206,6 +210,8 @@ function displayBooks(){
   addAttrubutes(cancelBtn, "data", i)
   let readSpan = document.createElement('button')
   addAttrubutes(readSpan, "class", "read-btn")
+  addAttrubutes(readSpan, "type", "notread")
+  addAttrubutes(readSpan, "text", "Not read")
   addAttrubutes(readSpan, "data", i)
   if (myLibrary[i].read == false){
     addAttrubutes(readSpan, "text", "Not read")
@@ -229,46 +235,21 @@ function displayBooks(){
   readBtns.forEach(button => button.addEventListener('click', readToggler)) 
   removeAddButton()
   addAddButton()
-  
+  updateStatistic()  
 }
 
+
+
 // FILTERS
+function noReadCheck(){
+  const unreadBooks = myLibrary.filter(book => book.read == false);
+  let unfinished = document.querySelector('.unfinished')
+  unfinished.textContent = unreadBooks.length
+  return unreadBooks.length
+}
 
-let pagesRead = 0
-let totalPages = 0
+const completedBooks = myLibrary.filter(book => book.read == true);
 
-const books = myLibrary.filter(function(Book) {
-  if (Book.read === 'true'){
-    let read = Book.pages
-    pagesRead += Number(read)
-  }
-  return 
-});
-
-const pagesFilter = myLibrary.filter(function(Book) {
-  let pages = Book.pages
-  totalPages += Number(pages)
-  return 
-});
-
-const totalBooks = myLibrary.length
-const booksRead = myLibrary.filter(Book => Book.read === "true");
-const booksNotRead = myLibrary.filter(Book => Book.read === "false");
-
-let pagesTotal = document.querySelector('.pages')
-addAttrubutes(pagesTotal, "text", totalPages)
-
-let completedPages = document.querySelector('.completedpages')
-addAttrubutes(completedPages, "text", pagesRead)
-
-let booksSpan = document.querySelector('.books')
-addAttrubutes(booksSpan, "text", totalBooks)
-
-let completedBooksSpan = document.querySelector('.completedbooks')
-addAttrubutes(completedBooksSpan, "text", booksRead.length)
-
-let unfinishedBooksSpan = document.querySelector('.unfinished')
-addAttrubutes(unfinishedBooksSpan, "text", booksNotRead.length)
 
 // BOOK INFORMATION
 
@@ -330,6 +311,7 @@ function userEdit(index){
   appendElements(submitBtn, submit)
   appendElements(nosubmitBtn, submit)
   appendElements(submit, card)
+  updateStatistic() 
 }
 
 // DELETE BOOK
@@ -355,7 +337,7 @@ function buttonToggler(e){
   }
 }
 
-function readToggler(){
+function readToggler() {
   let index = this.data
   let readStatus = myLibrary[index].read
   if (readStatus == false){
@@ -363,12 +345,15 @@ function readToggler(){
     myLibrary[index].read = true
     addAttrubutes(this, "text", "Read")
     addAttrubutes(this, "type", "read")
+    updateStatistic() 
   } else if (readStatus == true){
     this.classList = "notread"
     myLibrary[index].read = false
     addAttrubutes(this, "text", "Not read")
     addAttrubutes(this, "type", "notread")
+    updateStatistic() 
   }
+  
 }
 
 // ATTRIBUTES
