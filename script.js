@@ -35,15 +35,15 @@ let readStatus = false // true/false from buttonToggler
 
 // BOOK CONSTRUCTOR
 
-function Book(title, author, pages, read, index) {
+function Book(title, author, pages, read) {
   this.title = title
   this.author = author
   this.pages = pages
   this.read = read
 }
-/*
+
 let book1 = new Book("Harry Potter i komnata tajemnic", "J.K Rowling", "585", "false")
-let book2 = new Book("Harry Potter i kamien filozoficzny", "J.K Rowling", "666", "false")
+let book2 = new Book("Harry Potter i kamien filozoficzny", "J.K Rowling", "666", "true")
 let book3 = new Book("Harry Potter i wiezien azkabanu", "J.K Rowling", "522", "false")
 let book4 = new Book("Harry Potter i czara ognia", "J.K Rowling", "896", "false")
 let book5 = new Book("Harry Potter i zakon feniksa", "J.K Rowling", "145", "false")
@@ -61,7 +61,7 @@ myLibrary.push(book6)
 myLibrary.push(book7)
 myLibrary.push(book8)
 myLibrary.push(book9)
-*/
+
 
 // BOOK INFORMATION
 
@@ -231,6 +231,44 @@ function displayBooks(){
   addAddButton()
   
 }
+
+// FILTERS
+
+let pagesRead = 0
+let totalPages = 0
+
+const books = myLibrary.filter(function(Book) {
+  if (Book.read === 'true'){
+    let read = Book.pages
+    pagesRead += Number(read)
+  }
+  return 
+});
+
+const pagesFilter = myLibrary.filter(function(Book) {
+  let pages = Book.pages
+  totalPages += Number(pages)
+  return 
+});
+
+const totalBooks = myLibrary.length
+const booksRead = myLibrary.filter(Book => Book.read === "true");
+const booksNotRead = myLibrary.filter(Book => Book.read === "false");
+
+let pagesTotal = document.querySelector('.pages')
+addAttrubutes(pagesTotal, "text", totalPages)
+
+let completedPages = document.querySelector('.completedpages')
+addAttrubutes(completedPages, "text", pagesRead)
+
+let booksSpan = document.querySelector('.books')
+addAttrubutes(booksSpan, "text", totalBooks)
+
+let completedBooksSpan = document.querySelector('.completedbooks')
+addAttrubutes(completedBooksSpan, "text", booksRead.length)
+
+let unfinishedBooksSpan = document.querySelector('.unfinished')
+addAttrubutes(unfinishedBooksSpan, "text", booksNotRead.length)
 
 // BOOK INFORMATION
 
