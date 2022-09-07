@@ -4,8 +4,8 @@
     --input-bg-focus: rgb(12, 3, 3);
     --input-border-radius: 10px;
     --dynamic-bg-card: #030000;
-    --darkbrown: #472d2db9;
-    --brown: #553939;
+    --darkbrown: #472d2de5;
+    --brown: #553939bd;
     --brown-l: #704F4F;
     --brown-ul: #A77979;
     --brown-ultral: #e9a6a6;
@@ -78,7 +78,7 @@ html, body{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #cccccc;
+    color: var(--brown-l);
 }
 
 .information{
@@ -105,14 +105,14 @@ html, body{
 .information-card>h2{
     width: 100%;
     text-align: center;
-    color: #cccccc; 
+    color: var(--brown-l);
     letter-spacing: 2px;     
     font-size: 2rem;         
 }
 
 .info{
     font-size: .8rem;
-    width: 75%;
+    width: 100%;
 }
 
 
@@ -451,17 +451,18 @@ button[type=notread]{
     padding: .7rem;
     color: rgb(231, 223, 223);
     background: rgba(129, 115, 115, 0.15);
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    box-shadow: 0 8px 32px 0 rgba(116, 34, 52, 0.37);
     backdrop-filter: blur( 5px );
     -webkit-backdrop-filter: blur( 18.5px );
     border-radius: 10px;
-    
+    margin-left: .7rem;
+    margin-right: .7rem
     
 }
 
 .info>p>:first-child{
     text-align: right;
-    color: rgb(190, 181, 181)
+    color: rgb(190, 181, 181);
 }
 
 
@@ -509,10 +510,13 @@ button[type=notread]{
 .new-book{
     background-color: transparent;
     font-size: 8rem;
-    margin: 3rem;
-    border: 10px solid rgb(182, 66, 132);
+    margin: 2.7rem 3rem;
+    border: 10px solid var(--brown-ul);
     border-radius: 50px;
     color: rgb(201, 162, 184);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .newBookText{
