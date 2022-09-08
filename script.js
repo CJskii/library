@@ -76,6 +76,8 @@ myLibrary.push(book9)
 
 function dataHandler(e){
   const inputClass = e.target.classList
+  let key = e.which
+  console.log(e.which)
   if (inputClass == 'title-input'){
     let titleStr = e.target.value
     titleString = titleStr
@@ -83,15 +85,16 @@ function dataHandler(e){
     let authorStr = e.target.value
     authorString = authorStr
   } else if (inputClass == 'pages-input'){
-    let pageStr = e.target.value
-    pagesString = pageStr
+    if (this.value.length > 4){
+      this.value = pagesString
+      return
+    } else {
+      let pageStr = e.target.value
+      pagesString = pageStr
+    }
   }
 }
 
-function limit(e){
-  let key = e.which
-  
-}
 
 // USER PROMPT FOR BOOK INFO
 
@@ -122,10 +125,9 @@ function userPrompt(){
   appendElements(authorInput, author)
   appendElements(author, card)
   addAttrubutes(pages, 'class', 'pages-dynamic')
-  addAttrubutes(pagesInput, 'type', 'pages')
+  addAttrubutes(pagesInput, 'type', 'number')
   addAttrubutes(pagesInput, 'placeholder', 'Enter book pages...' )
   addAttrubutes(pagesInput, 'class', 'pages-input')
-  addAttrubutes(pagesInput, "maxlength", "4")
   appendElements(pagesInput, pages)
   appendElements(pages, card)
   addAttrubutes(toggle, 'class', 'toggle-dynamic')
@@ -143,7 +145,7 @@ function userPrompt(){
   appendElements(submit, card)
   let inputs = document.querySelectorAll('input')
   inputs.forEach(input => input.addEventListener('input', dataHandler))
-  inputs.forEach(input => input.addEventListener('keydown', limit))
+  inputs.forEach(input => input.addEventListener('keydown', dataHandler))
 }
 
 // ADD TO LIBRARY
