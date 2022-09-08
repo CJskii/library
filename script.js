@@ -88,6 +88,11 @@ function dataHandler(e){
   }
 }
 
+function limit(e){
+  let key = e.which
+  
+}
+
 // USER PROMPT FOR BOOK INFO
 
 function userPrompt(){
@@ -105,6 +110,7 @@ function userPrompt(){
   addAttrubutes(title, "class", "title-dynamic")
   addAttrubutes(titleInput, 'placeholder', 'Enter book title...')
   addAttrubutes(titleInput, 'class', 'title-input')
+  addAttrubutes(titleInput, "maxlength", "46")
   appendElements(titleSpan, title)
   appendElements(titleInput, title)
   appendElements(title, card)
@@ -112,12 +118,14 @@ function userPrompt(){
   addAttrubutes(authorInput, "type", 'author-dynamic')
   addAttrubutes(authorInput, "placeholder", "Enter book author...")
   addAttrubutes(authorInput, 'class', 'author-input')
+  addAttrubutes(authorInput, "maxlength", "32")
   appendElements(authorInput, author)
   appendElements(author, card)
   addAttrubutes(pages, 'class', 'pages-dynamic')
   addAttrubutes(pagesInput, 'type', 'pages')
   addAttrubutes(pagesInput, 'placeholder', 'Enter book pages...' )
   addAttrubutes(pagesInput, 'class', 'pages-input')
+  addAttrubutes(pagesInput, "maxlength", "4")
   appendElements(pagesInput, pages)
   appendElements(pages, card)
   addAttrubutes(toggle, 'class', 'toggle-dynamic')
@@ -135,6 +143,7 @@ function userPrompt(){
   appendElements(submit, card)
   let inputs = document.querySelectorAll('input')
   inputs.forEach(input => input.addEventListener('input', dataHandler))
+  inputs.forEach(input => input.addEventListener('keydown', limit))
 }
 
 // ADD TO LIBRARY
@@ -441,6 +450,8 @@ function addAttrubutes(x, y, z){
     element.data = z
   } else if (y == 'value'){
     element.value = z
+  } else if (y == 'maxlength'){
+    element.maxLength = z
   }
 }
 

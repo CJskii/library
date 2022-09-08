@@ -253,10 +253,10 @@ input[type=author]{
     display: grid;
     grid-template-rows: .5fr 2fr 1fr 1fr .5fr .5fr;
     position: absolute;
-    width: 60vw;
-    height: 60vh;
-    left: 10vw;
-    top: 20vh;
+    width: 50vw;
+    height: 70vh;
+    left: 15vw;
+    top: 10vh;
     background-color: var(--dynamic-bg-card);
     border-radius: var(--input-border-radius);
     padding-bottom: .5rem;
