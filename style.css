@@ -409,6 +409,7 @@ button[class=OFF]{
     border: none;
     justify-self: center;
     align-self: center;
+    
 }
 
 .nosubmitbtn{
@@ -428,11 +429,21 @@ button[type=read], button[type=notread]{
 }
 
 button[type=read]{
-    background-color: rgb(64, 122, 31);
+    background-color: rgba(64, 122, 31, 0.5);
+    transition: ease-in-out .5s;
 }
 
 button[type=notread]{
-    background-color: rgb(116, 26, 26);
+    background-color: rgba(116, 26, 26, 0.5);
+    transition: ease-in-out .5s;
+}
+
+button[type=read]:hover{
+    background-color: rgba(64, 122, 31);
+}
+
+button[type=notread]:hover{
+    background-color: rgba(116, 26, 26);
 }
 
 /* BOOK INFO */ 
@@ -449,9 +460,9 @@ button[type=notread]{
     display: flex;
     justify-content: space-between;
     padding: .7rem;
-    color: rgb(231, 223, 223);
+    color: rgb(175, 136, 136);
     background: rgba(129, 115, 115, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(116, 34, 52, 0.37);
+    box-shadow: 0 8px 32px 0 rgba(158, 76, 29, 0.37);
     backdrop-filter: blur( 5px );
     -webkit-backdrop-filter: blur( 18.5px );
     border-radius: 10px;
@@ -462,7 +473,7 @@ button[type=notread]{
 
 .info>p>:first-child{
     text-align: right;
-    color: rgb(190, 181, 181);
+    color: rgb(219, 180, 180);
 }
 
 
@@ -528,4 +539,8 @@ input{
     background-color: transparent;
     color: white;
     width: 100px;
+}
+
+.footer{
+    color: var(--brown-ultral)
 }
