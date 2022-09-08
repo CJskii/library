@@ -125,7 +125,7 @@ function userPrompt(){
   appendElements(authorInput, author)
   appendElements(author, card)
   addAttrubutes(pages, 'class', 'pages-dynamic')
-  addAttrubutes(pagesInput, 'type', 'number')
+  addAttrubutes(pagesInput, 'type', 'pages')
   addAttrubutes(pagesInput, 'placeholder', 'Enter book pages...' )
   addAttrubutes(pagesInput, 'class', 'pages-input')
   appendElements(pagesInput, pages)
